@@ -1,0 +1,6 @@
+---
+  - hosts: test
+    user: root
+    become: yes 
+    roles:
+      - updateall
