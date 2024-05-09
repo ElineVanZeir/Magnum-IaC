@@ -1,6 +1,11 @@
-# tasks/main.yml
-
 ---
+# tasks file for yum_install and update system
+- name: Install YUM package
+  package:
+    name: yum
+    state: present
+  become: true
+
 - name: Update all packages
   yum:
     name: "*"

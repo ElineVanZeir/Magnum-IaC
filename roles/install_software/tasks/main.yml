@@ -1,0 +1,16 @@
+---
+# tasks file for install_software
+    - name: Install required software
+      yum:
+        name: "{{ item }}"
+        state: present
+      become: true
+      loop:
+        - epel-release
+        - openvpn
+        - easy-rsa
+
+    - name: Install pexpect
+      package:
+        name: python3-pexpect
+        state: present
