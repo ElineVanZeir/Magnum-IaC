@@ -1,0 +1,39 @@
+---
+    - name: Initialize the PKI
+      command: ./easyrsa init-pki
+      args:
+        chdir: /usr/share/easy-rsa/3
+        
+    - name: Execute the script
+      expect:
+        command: ./easyrsa build-ca nopass
+        chdir: /usr/share/easy-rsa/3
+        responses:
+          "Common Name \\(eg: your user, host, or server name\\) \\[Easy-RSA CA\\]:": "open_vpn"
+
+    - name: Execute gen-dh
+      command: ./easyrsa gen-dh
+      args:
+        chdir: /usr/share/easy-rsa/3
+
+    - name: Build OpenVPN server certificate
+      command: ./easyrsa build-server-full open_vpn nopass
+      args:
+        chdir: /usr/share/easy-rsa/3
+      environment:
+        EASYRSA_BATCH: "yes"
+
+    - name: Build OpenVPN client certificate
+      command: ./easyrsa build-client-full client_open_vpn nopass
+      args:
+        chdir: /usr/share/easy-rsa/3
+      environment:
+        EASYRSA_BATCH: "yes"
+
+    - name: Change directory to Easy-RSA
+      command: cd /usr/share/easy-rsa/3/pki
+
+    - name: Initialize the ta key
+      command: openvpn --genkey --secret ta.key
+      args:
+        chdir: /usr/share/easy-rsa/3/pki

@@ -1,13 +1,21 @@
 ---
-# tasks file for yum_install and update system
-- name: Install YUM package
-  package:
-    name: yum
-    state: present
-  become: true
-
-- name: Update all packages
-  yum:
-    name: "*"
+- name: update for other Red Hat-based systems
+  dnf:
+    name: '*'
     state: latest
-    update_cache: yes
+
+- name: Update the package cache
+  ansible.builtin.dnf:
+    update_cache: true
+
+- name: Install dnf-automatic
+  ansible.builtin.dnf:
+    name:
+      - dnf-automatic
+    state: present
+
+- name: Enable a timer unit for dnf-automatic
+  ansible.builtin.systemd_service:
+    name: dnf-automatic.timer
+    state: started
+    enabled: true

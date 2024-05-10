@@ -1,0 +1,22 @@
+---
+    - name: Copy server.conf
+      copy:
+        src: server.conf 
+        dest: /etc/openvpn/server/server.conf 
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Make a  ccd-map
+      file:
+        path: /etc/openvpn/server/ccd
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Start OpenVPN-server
+      systemd:
+        name: openvpn-server@server
+        state: started
+        enabled: yes

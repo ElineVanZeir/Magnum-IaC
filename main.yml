@@ -2,7 +2,27 @@
   - hosts: test
     user: root
     become: yes 
-    roles:
-      - updateall
-      - install_software
-      - firewalld
+    tasks:
+
+    - name: Include variables
+      include_vars:
+        file: vault.yml
+
+    - name: Update system
+      ansible.builtin.include_role:
+        name: updateall
+
+    - name: install ufw
+      ansible.builtin.include_role:
+        name: ufwinstall
+
+    - name: Install docker - rocky
+      ansible.builtin.include_role:
+        name: install-docker-rocky
+
+
+
+    # roles:
+    #   - updateall
+    #   - install_software
+    #   - firewalld

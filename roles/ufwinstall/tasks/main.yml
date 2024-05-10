@@ -1,0 +1,29 @@
+---
+- name: run dnf update
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+
+- name: Install UFW
+  ansible.builtin.dnf:
+    name: ufw
+    state: present
+
+- name: Enabled UFW service
+  ansible.builtin.service:
+    name: ufw
+    enabled: true
+
+- name: Open poort 22 for SSH
+  community.general.ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+    comment: Allow incoming SSH connections
+
+- name: Open poort 443 for OpenVPN
+  community.general.ufw:
+    rule: allow
+    port: 443
+    proto: tcp
+    comment: Allow incoming OpenVPN connections
