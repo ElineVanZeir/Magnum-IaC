@@ -70,6 +70,13 @@ Vereisten:
 
 - De taken in de vorige stap moeten zijn uitgevoerd om certificaten en sleutels te genereren.
 - Het client_config.conf bestand moet bestaan en de basis client configuratie bevatten.
+
+## uitvoeren 
+Om de code uit te voeren dient men de volgende zaken te doen: 
+- Wijzig de host file met het juiste IP
+- En voor het volgende commando uit
+- Zet het ip adres juist in de client config
+`ansible-playbook main.yml`
  
 ## Bronnen 
 LinuxHelp. (2024, January 27). How to install and configure OpenVPN Server on Rocky Linux 9.2 [Video]. YouTube. https://www.youtube.com/watch?v=I2eK6_PvQcA
