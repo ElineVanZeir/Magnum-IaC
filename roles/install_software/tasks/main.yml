@@ -10,6 +10,6 @@
     - easy-rsa
 
 - name: Install pexpect
-  package:
+  ansible.builtin.dnf:
     name: python3-pexpect
     state: present

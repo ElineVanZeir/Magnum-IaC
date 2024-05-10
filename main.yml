@@ -8,9 +8,9 @@
       include_vars:
         file: vault.yml
 
-    # - name: Update system
-    #   ansible.builtin.include_role:
-    #     name: updateall
+    - name: Update system
+      ansible.builtin.include_role:
+        name: updateall
 
     - name: install software
       ansible.builtin.include_role:
