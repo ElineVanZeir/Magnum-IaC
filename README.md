@@ -77,6 +77,9 @@ Om de code uit te voeren dient men de volgende zaken te doen:
 - En voor het volgende commando uit
 - Zet het ip adres juist in de client config
 `ansible-playbook main.yml`
+
+## variabelen
+Er is een vault.yml bestand waar eventueel variabelen kunnen worden meegegeven. Deze wordt bij start van de playbook ingeladen. 
  
 ## Bronnen 
 LinuxHelp. (2024, January 27). How to install and configure OpenVPN Server on Rocky Linux 9.2 [Video]. YouTube. https://www.youtube.com/watch?v=I2eK6_PvQcA
