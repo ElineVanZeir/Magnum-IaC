@@ -116,3 +116,5 @@ ChatGPT. (n.d.). https://chatgpt.com
 
 OpenVPN. (2023, December 15). Business VPN for secure networking | OpenVPN. https://openvpn.net/ 
 
+Retro Mike Tech. (2023, July 3). Ansible Semaphore Installation & Setup | Web UI for Ansible [Video]. YouTube. https://www.youtube.com/watch?v=UCy4Ep2x2q4 
+
