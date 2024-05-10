@@ -54,8 +54,8 @@ Deze rol voert de volgende taken uit:
 5. OpenVPN toestaan: Opent poort 443 (TCP) voor inkomende OpenVPN-verbindingen.
 
 ### config-client
-1. Deze rol genereert een OpenVPN client configuratiebestand met de benodigde certificaten en sleutels.
-Client Configuratie kopiëren: Kopieert het client_config.conf bestand naar de /usr/share/easy-rsa/3/pki directory. Dit bestand kan dienen als basis voor client-specifieke configuraties.
+Deze rol genereert een OpenVPN client configuratiebestand met de benodigde certificaten en sleutels.
+1. Client Configuratie kopiëren: Kopieert het client_config.conf bestand naar de /usr/share/easy-rsa/3/pki directory. Dit bestand kan dienen als basis voor client-specifieke configuraties.
 2. ta.key lezen: Leest de inhoud van het ta.key bestand met de shell module.
 3. ta.key toevoegen aan client configuratie: Voegt de inhoud van het ta.key bestand toe aan het client_config.conf bestand na de regel "<tls-auth>".
 4. ca.crt lezen: Leest de inhoud van het ca.crt bestand met de shell module.
@@ -70,6 +70,17 @@ Vereisten:
 
 - De taken in de vorige stap moeten zijn uitgevoerd om certificaten en sleutels te genereren.
 - Het client_config.conf bestand moet bestaan en de basis client configuratie bevatten.
+
+### check 
+
+Deze rol gaat controleren of hele de installatie correct is verlopen. 
+
+1. Controleer OpenVPN installatie:
+Deze taak gebruikt de ansible.builtin.stat module om te controleren of het bestand /usr/sbin/openvpn bestaat.
+De uitkomst van de controle wordt opgeslagen in de variabele openvpn_installed.
+2. Print OpenVPN installatie status:
+Deze taak gebruikt de ansible.builtin.debug module om een bericht te printen waarin staat of OpenVPN al dan niet geïnstalleerd is.
+De status wordt gebaseerd op de openvpn_installed variabele die door de vorige taak is ingesteld.
 
 ## uitvoeren 
 Om de code uit te voeren dient men de volgende zaken te doen: 
