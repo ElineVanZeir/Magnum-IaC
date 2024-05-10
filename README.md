@@ -89,6 +89,23 @@ Om de code uit te voeren dient men de volgende zaken te doen:
 - En voor het volgende commando uit: 
   `ansible-playbook main.yml`
 
+## Semaphore 
+ga in de map van semaphore en voer het commando: 
+`docker-compose up -d`
+
+Als alles correct werkt, zou je toegang moeten hebben tot je Semaphore-toepassing via de browser. Ga naar http://localhost:80 om de toepassing te openen. 
+
+### Semaphore UI
+
+1. login met de zelf gekozen admin name en paswoord. 
+2. add repository: https://github.com/ElineVanZeir/Magnum-IaC.git
+3. add inventory: Hier komen alle ip adressen waar je openVPN op wilt installeren 
+  - hiervoor moet je eerst bij 'keystore' zorgen voor de juiste credentials om in te loggen op je machine
+4. environment: Hier zijn voorlopig geen variabelen (geef N/A in met {})
+5. Template: Hier kan je dan alles linken aan elkaar. 
+
+Je kan dan deze template "runnen" zo hoef je geen commando's meer in te geven en kan je gewoon zo overal openVPN installeren. 
+
 ## variabelen
 Er is een vault.yml bestand waar eventueel variabelen kunnen worden meegegeven. Deze wordt bij start van de playbook ingeladen. 
  
