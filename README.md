@@ -76,6 +76,8 @@ Om de code uit te voeren dient men de volgende zaken te doen:
 - Wijzig de host file met het juiste IP
 - En voor het volgende commando uit
 - Zet het ip adres juist in de client config
+
+  
 `ansible-playbook main.yml`
 
 ## variabelen
