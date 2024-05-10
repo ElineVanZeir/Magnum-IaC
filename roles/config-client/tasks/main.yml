@@ -1,67 +1,66 @@
 ---
-# tasks file for config_client_maker
-    - name: copy client_config.conf
-      copy:
-        src: client_config.conf
-        dest: /usr/share/easy-rsa/3/pki
-        owner: root
-        group: root
-        mode: '0644'
-        
-    - name: read ta.key
-      ansible.builtin.shell:
-        cmd: cat /usr/share/easy-rsa/3/pki/ta.key
-      register: ta_key_result
-      changed_when: false
+- name: copy client_config.conf
+  copy:
+    src: client_config.conf
+    dest: /usr/share/easy-rsa/3/pki
+    owner: root
+    group: root
+    mode: '0644'
+    
+- name: read ta.key
+  ansible.builtin.shell:
+    cmd: cat /usr/share/easy-rsa/3/pki/ta.key
+  register: ta_key_result
+  changed_when: false
 
-    - name: add ta.key to config file
-      ansible.builtin.lineinfile:
-        path: /usr/share/easy-rsa/3/pki/client_config.conf
-        line: "{{ ta_key_result.stdout }}"
-        insertafter: "<tls-auth>"
-        backup: yes
+- name: add ta.key to config file
+  ansible.builtin.lineinfile:
+    path: /usr/share/easy-rsa/3/pki/client_config.conf
+    line: "{{ ta_key_result.stdout }}"
+    insertafter: "<tls-auth>"
+    backup: yes
 
-    - name: read ca.crt 
-      ansible.builtin.shell:
-        cmd: cat /usr/share/easy-rsa/3/pki/ca.crt
-      register: ca_crt_result
-      changed_when: false
+- name: read ca.crt 
+  ansible.builtin.shell:
+    cmd: cat /usr/share/easy-rsa/3/pki/ca.crt
+  register: ca_crt_result
+  changed_when: false
 
-    - name: add ca.crt  to config file
-      ansible.builtin.lineinfile:
-        path: /usr/share/easy-rsa/3/pki/client_config.conf
-        line: "{{ ca_crt_result.stdout }}"
-        insertafter: "<ca>"
-        backup: yes
+- name: add ca.crt  to config file
+  ansible.builtin.lineinfile:
+    path: /usr/share/easy-rsa/3/pki/client_config.conf
+    line: "{{ ca_crt_result.stdout }}"
+    insertafter: "<ca>"
+    backup: yes
 
-    - name: read cert 
-      ansible.builtin.shell:
-        cmd: cat /usr/share/easy-rsa/3/pki/issued/client_open_vpn.crt
-      register: cert_result
-      changed_when: false
+- name: read cert 
+  ansible.builtin.shell:
+    cmd: cat /usr/share/easy-rsa/3/pki/issued/client_open_vpn.crt
+  register: cert_result
+  changed_when: false
 
-    - name: add read to config file
-      ansible.builtin.lineinfile:
-        path: /usr/share/easy-rsa/3/pki/client_config.conf
-        line: "{{ cert_result.stdout }}"
-        insertafter: "<cert>"
-        backup: yes
+- name: add read to config file
+  ansible.builtin.lineinfile:
+    path: /usr/share/easy-rsa/3/pki/client_config.conf
+    line: "{{ cert_result.stdout }}"
+    insertafter: "<cert>"
+    backup: yes
 
-    - name: read key 
-      ansible.builtin.shell:
-        cmd: cat /usr/share/easy-rsa/3/pki/private/client_open_vpn.key
-      register: key_result
-      changed_when: false
+- name: read key 
+  ansible.builtin.shell:
+    cmd: cat /usr/share/easy-rsa/3/pki/private/client_open_vpn.key
+  register: key_result
+  changed_when: false
 
-    - name: add key to config file
-      ansible.builtin.lineinfile:
-        path: /usr/share/easy-rsa/3/pki/client_config.conf
-        line: "{{ key_result.stdout }}"
-        insertafter: "<key>"
-        backup: yes
+- name: add key to config file
+  ansible.builtin.lineinfile:
+    path: /usr/share/easy-rsa/3/pki/client_config.conf
+    line: "{{ key_result.stdout }}"
+    insertafter: "<key>"
+    backup: yes
 
-    - name: Get client config
-      fetch:
-        src: /usr/share/easy-rsa/3/pki/client_config.conf
-        dest: ./client_config.ovpn
-        flat: yes
+- name: Get client config
+  fetch:
+    src: /usr/share/easy-rsa/3/pki/client_config.conf
+    dest: ./client_config.ovpn
+    flat: yes

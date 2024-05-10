@@ -12,17 +12,25 @@
       ansible.builtin.include_role:
         name: updateall
 
-    - name: install ufw
+    - name: install software
+      ansible.builtin.include_role:
+        name: install_software
+
+    - name: create certificates
+      ansible.builtin.include_role:
+        name: create-certs
+
+    - name: configuration open vpn
+      ansible.builtin.include_role:
+        name: config-openvpn
+
+    - name: ufw install and configuration
       ansible.builtin.include_role:
         name: ufwinstall
 
-    - name: Install docker - rocky
+    - name: configuration client
       ansible.builtin.include_role:
-        name: install-docker-rocky
+        name: config-client
 
 
-
-    # roles:
-    #   - updateall
-    #   - install_software
-    #   - firewalld
+  

@@ -1,39 +1,54 @@
 ---
-    - name: Initialize the PKI
-      command: ./easyrsa init-pki
-      args:
-        chdir: /usr/share/easy-rsa/3
-        
-    - name: Execute the script
-      expect:
-        command: ./easyrsa build-ca nopass
-        chdir: /usr/share/easy-rsa/3
-        responses:
-          "Common Name \\(eg: your user, host, or server name\\) \\[Easy-RSA CA\\]:": "open_vpn"
+- name: Initialize the PKI
+  command: ./easyrsa init-pki
+  args:
+    chdir: /usr/share/easy-rsa/3
+    
+- name: Execute the script
+  expect:
+    command: ./easyrsa build-ca nopass
+    chdir: /usr/share/easy-rsa/3
+    responses:
+      "Common Name \\(eg: your user, host, or server name\\) \\[Easy-RSA CA\\]:": "open_vpn"
 
-    - name: Execute gen-dh
-      command: ./easyrsa gen-dh
-      args:
-        chdir: /usr/share/easy-rsa/3
+- name: Execute gen-dh
+  command: ./easyrsa gen-dh
+  args:
+    chdir: /usr/share/easy-rsa/3
 
-    - name: Build OpenVPN server certificate
-      command: ./easyrsa build-server-full open_vpn nopass
-      args:
-        chdir: /usr/share/easy-rsa/3
-      environment:
-        EASYRSA_BATCH: "yes"
+- name: Build OpenVPN server certificate
+  command: ./easyrsa build-server-full open_vpn nopass
+  args:
+    chdir: /usr/share/easy-rsa/3
+  environment:
+    EASYRSA_BATCH: "yes"
 
-    - name: Build OpenVPN client certificate
-      command: ./easyrsa build-client-full client_open_vpn nopass
-      args:
-        chdir: /usr/share/easy-rsa/3
-      environment:
-        EASYRSA_BATCH: "yes"
+- name: Build OpenVPN client certificate
+  command: ./easyrsa build-client-full client_open_vpn nopass
+  args:
+    chdir: /usr/share/easy-rsa/3
+  environment:
+    EASYRSA_BATCH: "yes"
 
-    - name: Change directory to Easy-RSA
-      command: cd /usr/share/easy-rsa/3/pki
+- name: Change directory to Easy-RSA
+  command: cd /usr/share/easy-rsa/3/pki
 
-    - name: Initialize the ta key
-      command: openvpn --genkey --secret ta.key
-      args:
-        chdir: /usr/share/easy-rsa/3/pki
+- name: Initialize the ta key
+  command: openvpn --genkey --secret ta.key
+  args:
+    chdir: /usr/share/easy-rsa/3/pki
+
+- name: make renew_certificates.sh executable
+  ansible.builtin.file:
+    path: /usr/share/easy-rsa/3/renew_certificates.sh
+    mode: "+x"
+
+- name: Add cronjob to renew OpenVPN certificates every 3 months
+  ansible.builtin.cron:
+    name: Renew OpenVPN Certificates
+    minute: "0"
+    hour: "0"
+    monthday: "1"
+    month: "*/3"
+    job: "/usr/share/easy-rsa/3/renew_certificates.sh"
+    state: present

@@ -1,5 +1,5 @@
 ---
-- name: update for other Red Hat-based systems
+- name: update 
   dnf:
     name: '*'
     state: latest
@@ -15,7 +15,8 @@
     state: present
 
 - name: Enable a timer unit for dnf-automatic
-  ansible.builtin.systemd_service:
+  ansible.builtin.service:
     name: dnf-automatic.timer
     state: started
-    enabled: true
+    enabled: yes
+

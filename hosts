@@ -1,4 +1,4 @@
 [test]
 # IP            user 
 
-10.150.153.227 ansible_user=root
+192.168.84.82 ansible_user=root

@@ -1,3 +1,0 @@
----
-- name: Install Docker on Rocky linux
-  ansible.builtin.include_tasks: docker-install-CentOS.yaml
