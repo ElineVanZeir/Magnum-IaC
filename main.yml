@@ -32,5 +32,9 @@
       ansible.builtin.include_role:
         name: config-client
 
+    - name: check if openvpn is correct installed
+      ansible.builtin.include_role:
+        name: check
+
 
   

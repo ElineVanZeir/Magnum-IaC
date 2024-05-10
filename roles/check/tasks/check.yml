@@ -1,0 +1,9 @@
+---
+- name: Check if OpenVPN is installed
+  ansible.builtin.stat:
+    path: /usr/sbin/openvpn
+  register: openvpn_installed
+
+- name: Print OpenVPN installation status
+  ansible.builtin.debug:
+    msg: "OpenVPN is {{ 'installed' if openvpn_installed.stat.exists else 'not installed' }}"
