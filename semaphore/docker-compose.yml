@@ -19,7 +19,7 @@ services:
       - 80:3000
     build: .
     environment:
-      SEMAPHORE_DB_USER: urban
+      SEMAPHORE_DB_USER: ${SEMA_DB_USER}
       SEMAPHORE_DB_PASS: ${SEMA_DB_PASSWORD}
       SEMAPHORE_DB_HOST: mysql 
       SEMAPHORE_DB_PORT: 3306 
@@ -27,9 +27,9 @@ services:
       SEMAPHORE_DB: semaphore
       SEMAPHORE_PLAYBOOK_PATH: /tmp/semaphore/
       SEMAPHORE_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
-      SEMAPHORE_ADMIN_NAME: urban
+      SEMAPHORE_ADMIN_NAME: ${ADMIN_NAME}
       SEMAPHORE_ADMIN_EMAIL: admin@localhost
-      SEMAPHORE_ADMIN: urban
+      SEMAPHORE_ADMIN: ${SEMA_ADMIN}
       SEMAPHORE_ACCESS_KEY_ENCRYPTION: ${ENCRYPTION_KEY}
       SEMAPHORE_LDAP_ACTIVATED: 'no' 
       SEMAPHORE_LDAP_HOST: dc01.local.example.com
