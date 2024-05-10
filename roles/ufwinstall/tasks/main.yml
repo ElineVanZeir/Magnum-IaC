@@ -15,15 +15,13 @@
     enabled: true
 
 - name: Open poort 22 for SSH
-  community.general.ufw:
-    rule: allow
-    port: 22
-    proto: tcp
-    comment: Allow incoming SSH connections
+  ansible.builtin.command:
+    cmd: "/usr/sbin/ufw allow from any to any port '22' proto tcp comment 'Allow incoming SSH connections'"
 
 - name: Open poort 443 for OpenVPN
   community.general.ufw:
     rule: allow
-    port: 443
+    port: '443'
     proto: tcp
     comment: Allow incoming OpenVPN connections
+
