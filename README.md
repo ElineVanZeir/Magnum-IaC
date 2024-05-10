@@ -74,11 +74,9 @@ Vereisten:
 ## uitvoeren 
 Om de code uit te voeren dient men de volgende zaken te doen: 
 - Wijzig de host file met het juiste IP
-- En voor het volgende commando uit
 - Zet het ip adres juist in de client config
-
-  
-`ansible-playbook main.yml`
+- En voor het volgende commando uit: 
+  `ansible-playbook main.yml`
 
 ## variabelen
 Er is een vault.yml bestand waar eventueel variabelen kunnen worden meegegeven. Deze wordt bij start van de playbook ingeladen. 
