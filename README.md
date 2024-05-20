@@ -118,3 +118,7 @@ OpenVPN. (2023, December 15). Business VPN for secure networking | OpenVPN. http
 
 Retro Mike Tech. (2023, July 3). Ansible Semaphore Installation & Setup | Web UI for Ansible [Video]. YouTube. https://www.youtube.com/watch?v=UCy4Ep2x2q4 
 
+openvpn/sample/sample-config-files/client.conf at master · OpenVPN/openvpn. (n.d.). GitHub. https://github.com/OpenVPN/openvpn/blob/master/sample/sample-config-files/server.conf
+
+openvpn/sample/sample-config-files/client.conf at master · OpenVPN/openvpn. (n.d.). GitHub. https://github.com/OpenVPN/openvpn/blob/master/sample/sample-config-files/client.conf
+

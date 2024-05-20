@@ -25,3 +25,10 @@
     proto: tcp
     comment: Allow incoming OpenVPN connections
 
+- name: Open poort 80 for Semaphore
+  community.general.ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+    comment: Allow incoming HTTP connections for Semaphore
+
