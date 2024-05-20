@@ -38,17 +38,17 @@
   args:
     chdir: /usr/share/easy-rsa/3/pki
 
-- name: make renew_certificates.sh executable
-  ansible.builtin.file:
-    path: "roles/create-certs/scripts/renew_certificates.sh"
-    mode: "+x"
+# - name: make renew_certificates.sh executable
+#   ansible.builtin.file:
+#     path: "roles/create-certs/scripts/renew_certificates.sh"
+#     mode: "+x"
 
-- name: Add cronjob to renew OpenVPN certificates every 3 months
-  ansible.builtin.cron:
-    name: Renew OpenVPN Certificates
-    minute: "0"
-    hour: "0"
-    monthday: "1"
-    month: "*/3"
-    job: "roles/create-certs/scripts/renew_certificates.sh"
-    state: present
+# - name: Add cronjob to renew OpenVPN certificates every 3 months
+#   ansible.builtin.cron:
+#     name: Renew OpenVPN Certificates
+#     minute: "0"
+#     hour: "0"
+#     monthday: "1"
+#     month: "*/3"
+#     job: "roles/create-certs/scripts/renew_certificates.sh"
+#     state: present
