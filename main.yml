@@ -26,7 +26,7 @@
 
     - name: ufw install and configuration
       ansible.builtin.include_role:
-        name: ufwinstall
+        name: firewalld
 
     - name: configuration client
       ansible.builtin.include_role:

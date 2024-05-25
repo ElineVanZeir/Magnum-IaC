@@ -44,14 +44,15 @@ vereisten:
 - Het server.conf bestand moet bestaan en de OpenVPN-server configuratie bevatten.
 - De taken in de vorige stap moeten zijn uitgevoerd om certificaten en sleutels te genereren.
 
-### ufwinstall
+### firewalld
 Deze rol voert de volgende taken uit:
 
-1. Alle pakketten bijwerken: De rol gebruikt dnf om alle pakketten op uw systeem naar de nieuwste versie te upgraden.
-2. UFW installeren: De rol installeert de ufw-pakket, waarmee u een firewall op uw systeem kunt configureren.
-3. UFW service activeren: De rol activeert de ufw-service, zodat de firewall direct operationeel is.
-4. SSH toestaan: Opent poort 22 (TCP) voor inkomende SSH-verbindingen.
-5. OpenVPN toestaan: Opent poort 443 (TCP) voor inkomende OpenVPN-verbindingen.
+1. installeren firewalld: Deze taak installeert het firewalld-pakket op het systeem, indien dit nog niet aanwezig is.
+2. enable en start firewalld: Deze taak zorgt ervoor dat de firewalld-service wordt gestart en ingeschakeld bij het opstarten van het systeem.
+3. allow SSH: Staat SSH-verkeer toe door de SSH-service permanent in te schakelen in firewalld
+4. allow OpenVPN: staat verkeer via poort 443/tcp toe, wat vaak wordt gebruikt door OpenVPN.
+5. allow semaphore: staat HTTP-verkeer toe via poort 80/tcp voor semaphore. 
+6. reload: Deze taak herlaadt de firewalld-configuratie om de aangebrachte wijzigingen door te voeren.
 
 ### config-client
 Deze rol genereert een OpenVPN client configuratiebestand met de benodigde certificaten en sleutels.
@@ -69,7 +70,7 @@ Deze rol genereert een OpenVPN client configuratiebestand met de benodigde certi
 Vereisten:
 
 - De taken in de vorige stap moeten zijn uitgevoerd om certificaten en sleutels te genereren.
-- Het client_config.conf bestand moet bestaan en de basis client configuratie bevatten.
+- Het client_config.conf bestand moet bestaan en de basis client configuratie bevatten. Het ip bij remote moet je op het juiste ip zetten. 
 
 ### check 
 
