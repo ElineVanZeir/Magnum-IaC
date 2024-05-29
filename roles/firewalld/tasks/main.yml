@@ -22,7 +22,7 @@
       port: 443/tcp
       permanent: true
       state: enabled
-
+  
   - name: Allow semaphore
     firewalld:
       port: 80/tcp

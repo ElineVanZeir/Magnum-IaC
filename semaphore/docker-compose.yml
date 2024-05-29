@@ -8,7 +8,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${SQL_ROOT_PASSWD}
       MYSQL_DATABASE: semaphore
-      MYSQL_USER: urban
+      MYSQL_USER: ${SEMA_DB_USER}
       MYSQL_PASSWORD: ${SQL_PASSWD}
     networks:
       - backend
