@@ -6,10 +6,11 @@ OpenVPN is open source software voor het maken van een virtueel privénetwerk (V
 ### Updateall 
 Deze rol voert de volgende taken uit:
 
-1. Alle pakketten bijwerken: Het updatet alle pakketten op uw systeem naar de nieuwste versie.
-2. Pakkettencache bijwerken: Voordat pakketten worden bijgewerkt, wordt de cache bijgewerkt om te ensuren dat er naar de meest recente pakketlijsten wordt verwezen.
-3. dnf-automatic installeren: De rol installeert de dnf-automatic-pakket, waarmee automatische updates op uw systeem kunnen worden geconfigureerd.
-4. Automatische update timer inschakelen: De rol schakelt de timer voor dnf-automatic in, zodat uw systeem op regelmatige basis automatisch wordt bijgewerkt.
+1. firewalld installeren: Installeert het firewalld-pakket als het nog niet aanwezig is op het systeem. 
+2. Enable en start: Zorgt ervoor dat de firewalld-dienst is gestart en zo is ingesteld dat het automatisch start bij het opstarten van het systeem.
+3. SSH toestaan: Stelt firewalld in om SSH-verkeer permanent toe te staan.
+4. OpenVPN toestaan: Stelt firewalld in om permanent verkeer op poort 443/tcp toe te staan, wat vaak wordt gebruikt door OpenVPN.
+5. herstarten van firewalld: Laadt de firewalld-configuratie opnieuw in om de nieuwe regels toe te passen.
 
 ### install_software 
 Deze rol installeert de benodigde software om een openVPN-server te configureren op uw systeem. De taken omvatten:
