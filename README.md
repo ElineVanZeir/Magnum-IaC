@@ -86,7 +86,9 @@ De status wordt gebaseerd op de openvpn_installed variabele die door de vorige t
 ## uitvoeren 
 Om de code uit te voeren dient men de volgende zaken te doen: 
 - Wijzig de host file met het juiste IP
-- Zet het ip adres juist in de client config
+- Wijzig in de client_config.conf het remote ip naar het ip van je OpenVPN server
+- Zorg dat je Ansible hebt geïnstalleerd op de beheermachine
+- Zorg dat je SSH-toegang hebt tot de doelmachine met behulp van ssh-keys
 - En voor het volgende commando uit: 
   `ansible-playbook main.yml`
 
