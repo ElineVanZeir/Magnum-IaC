@@ -123,3 +123,4 @@ openvpn/sample/sample-config-files/client.conf at master · OpenVPN/openvpn. (n.
 
 openvpn/sample/sample-config-files/client.conf at master · OpenVPN/openvpn. (n.d.). GitHub. https://github.com/OpenVPN/openvpn/blob/master/sample/sample-config-files/client.conf
 
+Installation | Semaphore Docs. (n.d.). https://docs.semui.co/administration-guide/installation#docker 
