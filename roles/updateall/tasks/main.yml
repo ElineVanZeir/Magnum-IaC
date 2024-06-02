@@ -1,12 +1,12 @@
 ---
+- name: Update the package cache
+  ansible.builtin.dnf:
+    update_cache: true
+    
 - name: update 
   dnf:
     name: '*'
     state: latest
-
-- name: Update the package cache
-  ansible.builtin.dnf:
-    update_cache: true
 
 - name: Install dnf-automatic
   ansible.builtin.dnf:

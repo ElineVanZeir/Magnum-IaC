@@ -6,8 +6,8 @@ OpenVPN is open source software voor het maken van een virtueel privénetwerk (V
 ### Updateall 
 Deze rol voert de volgende taken uit:
 
-1. Alle pakketten bijwerken: Het updatet alle pakketten op uw systeem naar de nieuwste versie.
-2. Pakkettencache bijwerken: Voordat pakketten worden bijgewerkt, wordt de cache bijgewerkt om te ensuren dat er naar de meest recente pakketlijsten wordt verwezen.
+1. Pakkettencache bijwerken: Voordat pakketten worden bijgewerkt, wordt de cache bijgewerkt om te ensuren dat er naar de meest recente pakketlijsten wordt verwezen.
+2. Alle pakketten bijwerken: Het updatet alle pakketten op uw systeem naar de nieuwste versie.
 3. dnf-automatic installeren: De rol installeert de dnf-automatic-pakket, waarmee automatische updates op uw systeem kunnen worden geconfigureerd.
 4. Automatische update timer inschakelen: De rol schakelt de timer voor dnf-automatic in, zodat uw systeem op regelmatige basis automatisch wordt bijgewerkt.
 
