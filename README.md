@@ -115,6 +115,8 @@ Er is een vault.yml bestand waar eventueel variabelen kunnen worden meegegeven. 
 ## Bronnen 
 LinuxHelp. (2024, January 27). How to install and configure OpenVPN Server on Rocky Linux 9.2 [Video]. YouTube. https://www.youtube.com/watch?v=I2eK6_PvQcA
 
+Singh, N. (n.d.). How to install and configure OpenVPN Server on Rocky Linux 9. HowtoForge. https://www.howtoforge.com/how-to-install-and-configure-openvpn-server-on-rocky-linux-9/
+
 ChatGPT. (n.d.). https://chatgpt.com
 
 OpenVPN. (2023, December 15). Business VPN for secure networking | OpenVPN. https://openvpn.net/ 
