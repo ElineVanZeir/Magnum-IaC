@@ -5,20 +5,20 @@
     dest: /usr/share/easy-rsa/3/pki
     owner: root
     group: root
-    mode: '0644'
+    mode: '0644' # eigenaar lees en schrijf, groep alleen lees
     
 - name: read ta.key
   ansible.builtin.shell:
     cmd: cat /usr/share/easy-rsa/3/pki/ta.key
   register: ta_key_result
-  changed_when: false
+  changed_when: false #geeft aan dat deze taak nooit de status van de remote host zal veranderen. (eigenlijk niet echt nodig, meer voor veiligheid)
 
 - name: add ta.key to config file
   ansible.builtin.lineinfile:
     path: /usr/share/easy-rsa/3/pki/client_config.conf
     line: "{{ ta_key_result.stdout }}"
     insertafter: "<tls-auth>"
-    backup: yes
+    backup: yes # backup opslagen als client_config.conf.bak voor moest er bij het wegschrijven iets mislopen
 
 - name: read ca.crt 
   ansible.builtin.shell:
@@ -60,7 +60,7 @@
     backup: yes
 
 - name: Get client config
-  fetch:
+  fetch: # kopieren van remote naar lokale host
     src: /usr/share/easy-rsa/3/pki/client_config.conf
     dest: ./client_config.ovpn
-    flat: yes
+    flat: yes # het bestand wordt opgeslagen met dezelfde bestandsnaam als op de remote host.

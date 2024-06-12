@@ -1,0 +1,66 @@
+- name: Check if the server request file exists
+  stat:
+    path: /usr/share/easy-rsa/3/pki/reqs/open_vpn.req
+  register: server_req
+
+- name: Remove existing server request file
+  file:
+    path: /usr/share/easy-rsa/3/pki/reqs/open_vpn.req
+    state: absent
+  when: server_req.stat.exists
+
+- name: Check if the server key file exists
+  stat:
+    path: /usr/share/easy-rsa/3/pki/private/open_vpn.key
+  register: server_key
+
+- name: Remove existing server key file
+  file:
+    path: /usr/share/easy-rsa/3/pki/private/open_vpn.key
+    state: absent
+  when: server_key.stat.exists
+
+
+- name: Check if the server certificate file exists
+  stat:
+    path: /usr/share/easy-rsa/3/pki/issued/open_vpn.crt
+  register: server_cert
+
+- name: Remove existing server certificate file
+  file:
+    path: /usr/share/easy-rsa/3/pki/issued/open_vpn.crt
+    state: absent
+  when: server_cert.stat.exists
+
+- name: Check if the client request file exists
+  stat:
+    path: /usr/share/easy-rsa/3/pki/reqs/client_open_vpn.req
+  register: client_req
+
+- name: Remove existing client request file
+  file:
+    path: /usr/share/easy-rsa/3/pki/reqs/client_open_vpn.req
+    state: absent
+  when: client_req.stat.exists
+
+- name: Check if the client key file exists
+  stat:
+    path: /usr/share/easy-rsa/3/pki/private/client_open_vpn.key
+  register: client_key
+
+- name: Remove existing client key file
+  file:
+    path: /usr/share/easy-rsa/3/pki/private/client_open_vpn.key
+    state: absent
+  when: client_key.stat.exists
+
+- name: Check if the client certificate file exists
+  stat:
+    path: /usr/share/easy-rsa/3/pki/issued/client_open_vpn.crt
+  register: client_cert
+
+- name: Remove existing client certificate file
+  file:
+    path: /usr/share/easy-rsa/3/pki/issued/client_open_vpn.crt
+    state: absent
+  when: client_cert.stat.exists

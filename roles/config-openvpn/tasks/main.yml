@@ -7,7 +7,7 @@
     group: root
     mode: '0644'
 
-- name: Make a  ccd-map
+- name: Make a  ccd-map # client configuration directory voor client-specifieke configuratiebestanden
   file:
     path: /etc/openvpn/server/ccd
     state: directory

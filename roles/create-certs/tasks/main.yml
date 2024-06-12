@@ -1,42 +1,64 @@
 ---
+- name: Check if the PKI directory exists
+  stat:
+    path: /usr/share/easy-rsa/3/pki
+  register: pki_dir
+
 - name: Initialize the PKI
   command: ./easyrsa init-pki
   args:
     chdir: /usr/share/easy-rsa/3
-    
-- name: Execute the script
+  when: not pki_dir.stat.exists
+
+- name: Check if CA key exists
+  stat:
+    path: /usr/share/easy-rsa/3/pki/private/ca.key
+  register: ca_key
+
+- name: Build the CA
   expect:
     command: ./easyrsa build-ca nopass
     chdir: /usr/share/easy-rsa/3
     responses:
       "Common Name \\(eg: your user, host, or server name\\) \\[Easy-RSA CA\\]:": "open_vpn"
+      # Dit is een mapping van verwachte promptberichten en de reacties die Ansible zal verstrekken wanneer die berichten worden weergegeven. het systeem verwacht een prompt voor de "Common Name" en reageert Ansible met "open_vpn".
+  when: not ca_key.stat.exists
+    
+- name: Check if DH params exist
+  stat:
+    path: /usr/share/easy-rsa/3/pki/dh.pem
+  register: dh_params
 
-- name: Execute gen-dh
+- name: Generate Diffie-Hellman parameters
   command: ./easyrsa gen-dh
   args:
     chdir: /usr/share/easy-rsa/3
-
-- name: Build OpenVPN server certificate
-  command: ./easyrsa build-server-full open_vpn nopass
-  args:
-    chdir: /usr/share/easy-rsa/3
-  environment:
-    EASYRSA_BATCH: "yes"
+  when: not dh_params.stat.exists
 
 - name: Build OpenVPN client certificate
-  command: ./easyrsa build-client-full client_open_vpn nopass
+  command: ./easyrsa build-client-full client_open_vpn nopass # ./easyrsa build-client-full client_open_vpn nopass roept het Easy-RSA script aan om een client certificaat en sleutel te genereren voor de client met de naam client_open_vpn.
   args:
     chdir: /usr/share/easy-rsa/3
   environment:
     EASYRSA_BATCH: "yes"
+    # Easy-RSA wordt in batch-modus uitgevoerd. Dit betekent dat het script geen interactieve prompts zal tonen en automatisch standaardwaarden zal gebruiken, wat handig is voor geautomatiseerde scripttaken.
 
 - name: Change directory to Easy-RSA
   command: cd /usr/share/easy-rsa/3/pki
 
-- name: Initialize the ta key
+- name: Initialize the ta key #TLS authenticatiesleutel voor openvpn 
   command: openvpn --genkey --secret ta.key
   args:
     chdir: /usr/share/easy-rsa/3/pki
+
+
+
+
+
+
+
+
+
 
 # - name: make renew_certificates.sh executable
 #   ansible.builtin.file:

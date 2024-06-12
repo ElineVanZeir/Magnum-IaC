@@ -16,6 +16,10 @@
       ansible.builtin.include_role:
         name: install_software
 
+    - name: check for existing files
+      ansible.builtin.include_role:
+        name: check_existing_files
+
     - name: create certificates
       ansible.builtin.include_role:
         name: create-certs

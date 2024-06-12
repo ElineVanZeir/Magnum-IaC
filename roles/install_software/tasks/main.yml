@@ -9,7 +9,7 @@
     - openvpn
     - easy-rsa
 
-- name: Install pexpect
+- name: Install pexpect # voor de ca --> automatisch input en output sturen/lezen
   ansible.builtin.dnf:
     name: python3-pexpect
     state: present

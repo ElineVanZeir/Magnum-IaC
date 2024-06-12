@@ -1,4 +1,4 @@
 [test]
 # IP            user 
 
-192.168.159.142 ansible_user=root
+65.109.171.173 ansible_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa_exameniac
